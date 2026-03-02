@@ -1,7 +1,6 @@
 # **Pandemic Occurrence and Severity Prediction**
 
-This repository contains the code, data, and models required to reproduce the computational analysis and figures for the manuscript: **"Anthropogenic drivers accelerate the recurrence of global biological threats"**.  
-The codebase adheres to the strict reproducibility and computational tool reporting guidelines of Nature Portfolio journals.
+This repository contains the code, data, and models required to reproduce the computational analysis and figures for the manuscript: **"Anthropogenic drivers accelerate the recurrence of global biological threats"**.
 
 ## **📁 Repository Structure**
 

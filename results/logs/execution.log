@@ -1,0 +1,18 @@
+2026-03-02 13:32:00 - INFO - Pipeline initialized. Reproducibility seed set to 42.
+2026-03-02 13:32:00 - INFO - Dataset loaded successfully. Shape X: (33, 5, 6), Y: (33, 3)
+2026-03-02 13:32:00 - INFO - --- STARTING TIME-SERIES WALK-FORWARD VALIDATION ---
+2026-03-02 13:33:07 - INFO - LSTM MAE (Years):           3.14
+2026-03-02 13:33:07 - INFO - Ridge Reg MAE (Years):      5.11
+2026-03-02 13:33:07 - INFO - Random Forest MAE (Years):  3.35
+2026-03-02 13:33:07 - INFO - LSTM RMSE (Years):          3.50
+2026-03-02 13:33:07 - INFO - Ridge Reg RMSE (Years):     6.15
+2026-03-02 13:33:07 - INFO - Random Forest RMSE (Years): 4.07
+2026-03-02 13:33:07 - INFO - Training final LSTM model for forecasting...
+2026-03-02 13:34:01 - INFO - --- SCIENTIFIC SUMMARY ---
+2026-03-02 13:34:01 - INFO - Total historical events analyzed: N=38
+2026-03-02 13:34:01 - INFO - PREDICTED NEXT EVENT CHARACTERISTICS:
+2026-03-02 13:34:01 - INFO - Estimated Onset Year: 2032 (95% CI: 2031 - 2034)
+2026-03-02 13:34:01 - INFO - Estimated Severity Index: 0.60
+2026-03-02 13:34:01 - INFO - Estimated Event Duration: 6.98 years
+2026-03-02 13:34:01 - INFO - Generating publication-quality figures...
+2026-03-02 13:34:04 - INFO - Figures exported to: C:\Users\Administrator\Desktop\New_ART\article\PandemicPrediction\results\figures

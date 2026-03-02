@@ -5,7 +5,10 @@ from typing import Tuple, List, Dict
 from sklearn.preprocessing import MinMaxScaler
 
 class PandemicDataLoader:
-    """Класс для загрузки, предобработки и векторизации данных."""
+    """
+    Class for loading, preprocessing, and vectorizing pandemic dataset.
+    Handles feature scaling and sequence generation for LSTM models.
+    """
     
     def __init__(self, data_path: Path, look_back: int = 5):
         self.data_path = data_path
@@ -22,21 +25,29 @@ class PandemicDataLoader:
         self.scaled_features = None
 
     def load_and_preprocess(self) -> pd.DataFrame:
-        """Загрузка данных и создание признака 'Interval'."""
+        """
+        Loads CSV data and calculates the inter-pandemic interval.
+        """
         if not self.data_path.exists():
-            raise FileNotFoundError(f"Файл данных не найден по пути: {self.data_path}")
+            raise FileNotFoundError(f"Data file not found at: {self.data_path}")
             
         self.df = pd.read_csv(self.data_path)
         
-        # Расчет интервала с дефолтным значением для первого события
+        # Calculate year intervals; fill the first entry with a default historical baseline (35 years)
         self.df['Interval'] = self.df['Year'].diff().fillna(35.0)
         return self.df
 
     def create_sequences(self) -> Tuple[np.ndarray, np.ndarray]:
-        """Нормализация и создание временных окон для LSTM."""
+        """
+        Normalizes data and generates sliding window sequences for LSTM training.
+        Returns:
+            X: Input sequences (N, look_back, num_features)
+            Y: Target values (N, num_targets)
+        """
         features = self.df[self.feature_cols].values.astype('float32')
         targets = self.df[self.target_cols].values.astype('float32')
 
+        # Fit and transform using MinMaxScaler (0 to 1 range)
         self.scaled_features = self.scaler_x.fit_transform(features)
         scaled_targets = self.scaler_y.fit_transform(targets)
 
@@ -50,6 +61,8 @@ class PandemicDataLoader:
         return self.X, self.Y
 
     def get_last_sequence(self) -> np.ndarray:
-        """Получение последнего окна для предсказания будущего события."""
+        """
+        Extracts the most recent sequence to forecast the next event.
+        """
         last_seq_features = self.scaled_features[-self.look_back:]
         return last_seq_features.reshape(1, self.look_back, len(self.feature_cols))

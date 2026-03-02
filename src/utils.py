@@ -6,13 +6,15 @@ import tensorflow as tf
 from pathlib import Path
 
 def setup_logger(log_file: Path) -> logging.Logger:
-    """Настройка логгера для записи результатов и ошибок."""
+    """
+    Configures a logger to record execution flow, metrics, and errors.
+    """
     log_file.parent.mkdir(parents=True, exist_ok=True)
     
     logger = logging.getLogger("PandemicModel")
     logger.setLevel(logging.INFO)
     
-    # Предотвращение дублирования логов при повторных запусках
+    # Prevent handler duplication across multiple runs
     if not logger.handlers:
         c_handler = logging.StreamHandler()
         f_handler = logging.FileHandler(log_file, mode='w')
@@ -27,7 +29,9 @@ def setup_logger(log_file: Path) -> logging.Logger:
     return logger
 
 def enforce_reproducibility(seed: int = 42) -> None:
-    """Установка всех random seeds для хардкорной воспроизводимости (требование Nature)."""
+    """
+    Sets global random seeds and deterministic flags for strict computational reproducibility.
+    """
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     os.environ['PYTHONHASHSEED'] = str(seed)
     
@@ -36,7 +40,7 @@ def enforce_reproducibility(seed: int = 42) -> None:
     tf.random.set_seed(seed)
     
     try:
+        # Ensures deterministic operations in TensorFlow where possible
         tf.config.experimental.enable_op_determinism()
     except AttributeError:
-        # Для более старых версий TF, где эта функция отсутствует
         pass
