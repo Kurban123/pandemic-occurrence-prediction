@@ -1,6 +1,6 @@
 # **Pandemic Occurrence and Severity Prediction**
 
-This repository contains the code, data, and models required to reproduce the computational analysis and figures for the manuscript: **"Bayesian deep learning forecasts the next window of global biological threats based on anthropogenic drivers"**.
+This repository contains the code, data, and models required to reproduce the computational analysis and figures for the manuscript: **"Bayesian forecasting of inter-event intervals among historical global biological events"**.
 
 ## **📁 Repository Structure**
 
